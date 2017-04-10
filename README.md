@@ -1,6 +1,6 @@
-# projeto_vagas.com
+# Fictícia vídeos
 
-> Reposit�rio para disponibilizar desafio da empresa VAGAS.com (https://www.vagas.com.br/) para vaga de desenvolvedor front-end.
+> Repositório para disponibilizar desafio para vaga de desenvolvedor front-end.
 
 ## Build Setup
 
