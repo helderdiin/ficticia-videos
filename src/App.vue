@@ -36,10 +36,7 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
-
-html {
-  font-family: 'Ubuntu', sans-serif;
-}
+@import './styles/style.scss';
 
 .app__navbar {
   background-color: #a8395c;
