@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-default">
+    <nav class="app__navbar navbar-default">
       <div class="navbar__container-fluid row">
         <div class="col-xs-offset-1 col-xs-10">
           <div class="container-fluid__logo-wrapper col-xs-2">
@@ -22,8 +22,9 @@
         </div>
       </div>
     </nav>
-
-    <router-view></router-view>
+    <div class="col-xs-offset-1 col-xs-10">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -40,7 +41,7 @@ html {
   font-family: 'Ubuntu', sans-serif;
 }
 
-.navbar {
+.app__navbar {
   background-color: #a8395c;
   border-radius: 0px;
   border: 0px;
