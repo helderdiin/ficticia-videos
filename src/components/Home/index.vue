@@ -1,42 +1,16 @@
 <template>
   <div class="home">
     <!-- Conteúdo vídeo em destaque -->
-    <div class="destaque col-xs-7">
-      <div class="destaque__titulo">
-        <h2>Vídeo em destaque</h2>
-      </div>
-      <div class="destaque__conteudo-video">
-        <div class="conteudo-video__video">
-          <iframe
-            width="100%"
-            height="100%"
-            frameborder="0"
-            allowfullscreen
-            :src="videos[0].url">
-          </iframe>
-        </div>
-        <div class="conteudo-video__infos">
-          <div class="infos__titulo">
-            <div class="titulo__texto">
-              <h4> {{videos[0].title}} </h4>
-            </div>
-            <div class="titulo__icones">
-              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-              <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-            </div>
-          </div>
-          <div class="infos__desc">
-            {{videos[0].description}}
-          </div>
-        </div>
-      </div>
-    </div>
+    <destaque :video="videos[0]" class="col-xs-7"></destaque>
   </div>
 </template>
 
 <script>
+import Destaque from './destaque';
+
 export default {
   name: 'home',
+  components: { Destaque },
   data() {
     return {
       videos: [{
