@@ -16,24 +16,35 @@
 
 <script>
 import Destaque from './destaque';
+import youtube from '../youtube';
 
 export default {
   name: 'home',
   components: { Destaque },
+  methods: {
+    getVideos: function getVideos() {
+      youtube.getVideos({
+        maxResults: 20,
+      }).then((res = {}) => {
+        const response = res.data;
+        const items = response.items;
+
+        this.videos = items.map((i) => {
+          return {
+            url: `https://www.youtube.com/embed/${i.contentDetails.videoId}`,
+            title: i.snippet.title,
+            description: i.snippet.description,
+          };
+        });
+      });
+    },
+  },
+  created() {
+    this.getVideos();
+  },
   data() {
     return {
-      videos: [{
-        title: 'Teste de vídeo em destaque por que é legal',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum blandit elit, nec efficitur risus suscipit eu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec fringilla elit sem, nec vestibulum sapien ultrices nec. Phasellus id ex enim. Nulla at scelerisque augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec auctor laoreet tortor et venenatis. Donec volutpat sollicitudin sagittis.',
-        url: 'https://www.youtube.com/embed/DsuTwV0jwaY',
-        views: 123,
-        creationDate: 1491844609961,
-      }, {
-        title: 'Teste2',
-        url: 'https://www.youtube.com/watch?v=iGmVQlATHkk',
-        views: 321,
-        creationDate: 1491844608951,
-      }],
+      videos: [],
     };
   },
 };
