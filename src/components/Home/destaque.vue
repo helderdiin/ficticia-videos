@@ -81,6 +81,7 @@ export default {
   padding: 11px;
   font-size: 18px;
   color: #5fbdd5;
+  padding-right: 0;
   & span:first-child {
     margin-right: 5px;
   }
