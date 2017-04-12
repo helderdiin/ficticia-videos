@@ -13,7 +13,7 @@
           :src="video.url">
         </iframe>
       </div>
-      <div class="conteudo-video__infos">
+      <div class="conteudo-video__infos" @click="toggleInfosVideo" :class="{ 'conteudo-video__infos--closed': infosVideoClosed }">
         <div class="infos__titulo">
           <div class="titulo__texto">
             <h4> {{video.title}} </h4>
@@ -24,6 +24,7 @@
           </div>
         </div>
         <div v-html="video.description" class="infos__desc"></div>
+        <div class="infos__gradient" :class="{ 'infos__gradient--visible': infosVideoClosed }"></div>
       </div>
     </div>
   </div>
@@ -40,8 +41,15 @@ export default {
       },
     },
   },
+  methods: {
+    toggleInfosVideo: function toggleInfosVideo() {
+      this.infosVideoClosed = !this.infosVideoClosed;
+    },
+  },
   data() {
-    return {};
+    return {
+      infosVideoClosed: true,
+    };
   },
 };
 </script>
@@ -67,10 +75,31 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.3);
   margin-top: 30px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+  position: relative;
+  margin-bottom: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.conteudo-video__infos--closed {
+  height: 200px;
+  overflow: hidden;
+}
+
+.infos__gradient--visible {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(transparent, white);
+  height: 160px;
 }
 
 .infos__desc {
-  text-align: justify;
+  width: 100%;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 
 .infos__titulo {
