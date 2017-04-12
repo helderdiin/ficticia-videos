@@ -1,7 +1,16 @@
 <template>
   <div class="home">
-    <!-- Conteúdo vídeo em destaque -->
     <destaque :video="videos[0]" class="col-xs-7"></destaque>
+    <div class="lista-videos col-xs-5">
+      <div class="lista-videos__titulo">
+        <h2>+ Vídeos</h2>
+      </div>
+      <div class="lista-videos__conteudo">
+        <div class="conteudo__item">
+
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -33,46 +42,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
-.destaque__titulo {
-  height: auto;
-  margin-top: 30px;
-}
-
-.conteudo-video__video {
-  height: 350px;
-}
-
-.destaque__conteudo-video {
-  margin-top: 30px;
-}
-
-.conteudo-video__infos {
+.lista-videos__conteudo {
   padding: 15px 20px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   margin-top: 30px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
 }
 
-.infos__desc {
-  text-align: justify;
-}
-
-.infos__titulo {
-  overflow: hidden;
-}
-
-.titulo__texto {
-  float: left;
-}
-
-.titulo__icones {
-  float: right;
-  padding: 11px;
-  font-size: 18px;
-  color: #5fbdd5;
-  & span:first-child {
-    margin-right: 5px;
-  }
+.lista-videos__titulo {
+  height: auto;
+  margin-top: 30px;
 }
 
 </style>
