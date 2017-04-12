@@ -23,9 +23,7 @@
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="infos__desc">
-          {{video.description}}
-        </div>
+        <div v-html="video.description" class="infos__desc"></div>
       </div>
     </div>
   </div>

@@ -4,6 +4,11 @@ export const objParamToStringQueryParam = (params = {}) => {
   }).join('&');
 };
 
+export const backSlashToBreakLine = (text = '') => {
+  return text.replace(/(\n)/g, '<br />');
+};
+
 export default {
   objParamToStringQueryParam,
+  backSlashToBreakLine,
 };

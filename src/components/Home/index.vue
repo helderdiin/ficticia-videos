@@ -17,6 +17,7 @@
 <script>
 import Destaque from './destaque';
 import youtube from '../youtube';
+import { backSlashToBreakLine } from '../../utils';
 
 export default {
   name: 'home',
@@ -33,7 +34,7 @@ export default {
           return {
             url: `https://www.youtube.com/embed/${i.contentDetails.videoId}`,
             title: i.snippet.title,
-            description: i.snippet.description,
+            description: backSlashToBreakLine(i.snippet.description),
           };
         });
       });
