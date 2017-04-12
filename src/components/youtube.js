@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { APP } from '../constants';
-import { objToQueryParam } from '../utils';
+import { objParamToStringQueryParam } from '../utils';
 
 const request = (config) => {
   return axios(config);
@@ -17,7 +17,7 @@ class Youtube {
 
   getVideos(params = {}) {
     const defaultParams = Object.assign({}, this.defaultParams, params);
-    const url = `${this.url}&${objToQueryParam(defaultParams)}`;
+    const url = `${this.url}&${objParamToStringQueryParam(defaultParams)}`;
 
     return request({ url });
   }
