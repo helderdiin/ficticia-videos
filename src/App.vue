@@ -1,22 +1,24 @@
 <template>
   <div id="app">
     <nav class="app__navbar navbar-default">
-      <div class="navbar__container-fluid row">
-        <div class="col-xs-offset-1 col-xs-10">
-          <div class="container-fluid__logo-wrapper col-xs-2">
-            <a class="container-fluid__logo" href="/home">
-              <img alt="Brand" src="./assets/images/logo.png">
-            </a>
-          </div>
-          <div class="container-fluid__menu col-xs-offset-8 col-xs-2">
-            <div class="pull-right">
-              <a href="javascript:void(0);">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      <div class="container-fluid navbar__container-fluid">
+        <div class="row">
+          <div class="col-xs-offset-1 col-xs-10">
+            <div class="container-fluid__logo-wrapper col-xs-2">
+              <a class="container-fluid__logo" href="/home">
+                <img alt="Brand" src="./assets/images/logo.png">
               </a>
-              <a href="javascript:void(0);">
-                <span>Menu</span>
-                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-              </a>
+            </div>
+            <div class="container-fluid__menu col-xs-offset-8 col-xs-2">
+              <div class="pull-right">
+                <a href="javascript:void(0);">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </a>
+                <a href="javascript:void(0);">
+                  <span>Menu</span>
+                  <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
