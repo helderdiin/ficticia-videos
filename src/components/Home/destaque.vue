@@ -34,7 +34,14 @@
 <script>
 export default {
   name: 'destaque',
-  props: ['video'],
+  props: {
+    video: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+  },
   data() {
     return {};
   },
