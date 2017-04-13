@@ -35,13 +35,18 @@ const getVideos = (params = {}) => {
 };
 
 class Youtube {
-  getVideosData(params = {}) {
+  constructor() {
+    this.pageToken = {};
+  }
+
+  getVideos(params = {}) {
     return getPlaylistItems(params).then((res = {}) => {
       const items = res.data.items;
-
       const reqs = items.map((i) => {
         return getVideos({ id: i.contentDetails.videoId });
       });
+
+      this.pageToken.nextPageToken = res.data.nextPageToken;
 
       return Promise.all(reqs).then((resolveds = {}) => {
         return resolveds.map((r, i) => {
@@ -49,6 +54,18 @@ class Youtube {
         });
       });
     });
+  }
+
+  getMoreVideos(params = {}) {
+    if (this.pageToken.nextPageToken) {
+      const newParams = Object.assign({}, params, {
+        pageToken: this.pageToken.nextPageToken,
+      });
+
+      return this.getVideos(newParams);
+    }
+
+    return Promise.resolve([]);
   }
 }
 

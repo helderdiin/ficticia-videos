@@ -54,24 +54,42 @@ const getBestThumbnail = (thumbnails = {}) => {
   return thumbnails.default.url;
 };
 
+const getVideosObject = (items = []) => {
+  return items.map((i) => {
+    return {
+      url: `${APP.YOUTUBE.EMBED_URL}/${i.id}`,
+      title: i.snippet.title,
+      description: backSlashToBreakLine(i.snippet.description),
+      thumbnail: getBestThumbnail(i.snippet.thumbnails),
+      views: i.statistics.viewCount,
+    };
+  });
+};
+
 export default {
   name: 'home',
   components: { Destaque },
   methods: {
     getVideos: function getVideos() {
-      youtube.getVideosData({
-        maxResults: 20,
+      youtube.getVideos({
+        maxResults: 4,
       }).then((items = []) => {
-        this.videos = items.map((i) => {
-          return {
-            url: `${APP.YOUTUBE.EMBED_URL}/${i.id}`,
-            title: i.snippet.title,
-            description: backSlashToBreakLine(i.snippet.description),
-            thumbnail: getBestThumbnail(i.snippet.thumbnails),
-            views: i.statistics.viewCount,
-          };
-        });
+        this.videos = [...this.videos, ...getVideosObject(items)];
+        this.setVideoDestaque(this.videos[0]);
       });
+    },
+    carregarMaisVideos: function carregarMaisVideos() {
+      this.toggleCarregandoMaisVideos();
+
+      youtube.getMoreVideos({
+        maxResults: 4,
+      }).then((items = []) => {
+        this.toggleCarregandoMaisVideos();
+        this.videos = [...this.videos, ...getVideosObject(items)];
+      });
+    },
+    toggleCarregandoMaisVideos: function toggleCarregandoMaisVideos() {
+      this.carregandoMaisVideos = !this.carregandoMaisVideos;
     },
     setVideoDestaque: function setVideoDestaque(video) {
       this.videoDestaque = video;
@@ -83,6 +101,7 @@ export default {
   data() {
     return {
       videos: [],
+      carregandoMaisVideos: false,
       videoDestaque: {},
     };
   },
