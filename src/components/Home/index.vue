@@ -10,6 +10,7 @@
           <div class="conteudo__item" v-for="video in videos" @click="setVideoDestaque(video)">
             <div class="item__img col-xs-7">
               <img :src="video.thumbnail" />
+              <span class="img__duration"> {{video.duration}} </span>
             </div>
             <div class="item__infos col-xs-5">
               <div class="infos__titulo">
@@ -42,7 +43,7 @@
 <script>
 import Destaque from './destaque';
 import youtube from '../youtube';
-import { backSlashToBreakLine } from '../../utils';
+import { backSlashToBreakLine, normalizeTimeNumber } from '../../utils';
 import { APP } from '../../constants';
 
 const getBestThumbnail = (thumbnails = {}) => {
@@ -54,6 +55,26 @@ const getBestThumbnail = (thumbnails = {}) => {
   return thumbnails.default.url;
 };
 
+const getGroups = (duration = '') => {
+  const regexpMS = /PT(\d+)M(\d+)S/;
+  const regexpM = /PT(\d+)M/;
+  const regexpS = /PT(\d+)S/;
+
+  if (duration.match(/[M][S]/g)) {
+    return regexpMS.exec(duration);
+  } else if (duration.match(/[M]/g)) {
+    return regexpM.exec(duration);
+  }
+
+  return regexpS.exec(duration);
+};
+
+const getVideoDuration = (duration = '') => {
+  const groups = getGroups(duration);
+
+  return `${normalizeTimeNumber(groups[1])}:${normalizeTimeNumber(groups[2])}`;
+};
+
 const getVideosObject = (items = []) => {
   return items.map((i) => {
     return {
@@ -62,6 +83,7 @@ const getVideosObject = (items = []) => {
       description: backSlashToBreakLine(i.snippet.description),
       thumbnail: getBestThumbnail(i.snippet.thumbnails),
       views: i.statistics.viewCount,
+      duration: getVideoDuration(i.contentDetails.duration),
     };
   });
 };
@@ -217,6 +239,21 @@ export default {
 .conteudo__items-wrapper {
   height: 525px;
   overflow-x: hidden;
+}
+
+.img__duration {
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 17%;
+  font-weight: 700;
+  font-size: 10px;
+  padding: 1px 3px;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  margin: 0 4px 4px 0;
+  border-radius: 5px;
 }
 
 </style>
