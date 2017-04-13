@@ -108,6 +108,12 @@ export default {
 
 .titulo__texto {
   float: left;
+  width: 90%;
+  & h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .titulo__icones {
