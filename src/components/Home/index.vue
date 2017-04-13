@@ -24,6 +24,14 @@
             </div>
           </div>
         </div>
+        <div class="conteudo__carregar-mais">
+          <div class="carregar-mais__botao" :class="{ 'carregar-mais__botao--invisible': carregandoMaisVideos }" @click="carregarMaisVideos">
+            <span> carregar mais vídeos... </span>
+          </div>
+          <div class="carregar-mais__loading" :class="{ 'carregar-mais__loading--visible': carregandoMaisVideos }">
+            <span class="glyphicon glyphicon-refresh gly-spin"></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -137,6 +145,43 @@ export default {
   & h4 {
     margin: 0;
   }
+}
+
+.conteudo__carregar-mais {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 15px;
+}
+
+.carregar-mais__botao {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 0;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+  }
+  & span {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+  }
+}
+
+.carregar-mais__loading {
+  display: none;
+  padding: 5px 0;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.carregar-mais__loading--visible {
+  display: block;
+}
+
+.carregar-mais__botao--invisible {
+  display: none;
 }
 
 </style>
