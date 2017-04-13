@@ -94,6 +94,9 @@ export default {
   height: 120px;
   margin-bottom: 15px;
   position: relative;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .item__infos {
@@ -105,6 +108,7 @@ export default {
   padding: 0;
   & img {
     width: 100%;
+    max-height: 120px;
   }
 }
 
@@ -112,7 +116,7 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .views__icon {
@@ -123,6 +127,12 @@ export default {
 .infos__text {
   float: left;
   margin-left: 5px;
+}
+
+.infos__titulo {
+  & h4 {
+    margin: 0;
+  }
 }
 
 </style>
