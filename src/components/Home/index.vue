@@ -6,20 +6,22 @@
         <h2>+ Vídeos</h2>
       </div>
       <div class="lista-videos__conteudo">
-        <div class="conteudo__item" v-for="video in videos">
-          <div class="item__img col-xs-7">
-            <img :src="video.thumbnail" />
-          </div>
-          <div class="item__infos col-xs-5">
-            <div class="infos__titulo">
-              <h4> {{video.title}} </h4>
+        <div class="conteudo__items-wrapper style-scroll">
+          <div class="conteudo__item" v-for="video in videos" @click="setVideoDestaque(video)">
+            <div class="item__img col-xs-7">
+              <img :src="video.thumbnail" />
             </div>
-            <div class="infos__views">
-              <div class="views__icon">
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <div class="item__infos col-xs-5">
+              <div class="infos__titulo">
+                <h4> {{video.title}} </h4>
               </div>
-              <div class="infos__text">
-                <span> {{video.views}} views </span>
+              <div class="infos__views">
+                <div class="views__icon">
+                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                </div>
+                <div class="infos__text">
+                  <span> {{video.views}} views </span>
+                </div>
               </div>
             </div>
           </div>
@@ -182,6 +184,11 @@ export default {
 
 .carregar-mais__botao--invisible {
   display: none;
+}
+
+.conteudo__items-wrapper {
+  height: 525px;
+  overflow-x: hidden;
 }
 
 </style>
