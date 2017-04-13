@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <destaque :video="videos[0]" class="col-xs-7"></destaque>
+    <destaque :video="videoDestaque" class="col-xs-7"></destaque>
     <div class="lista-videos col-xs-5">
       <div class="lista-videos__titulo">
         <h2>+ Vídeos</h2>
@@ -63,6 +63,9 @@ export default {
         });
       });
     },
+    setVideoDestaque: function setVideoDestaque(video) {
+      this.videoDestaque = video;
+    },
   },
   created() {
     this.getVideos();
@@ -70,6 +73,7 @@ export default {
   data() {
     return {
       videos: [],
+      videoDestaque: {},
     };
   },
 };
