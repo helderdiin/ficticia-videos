@@ -149,7 +149,8 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 700;
 }
 
 .views__icon {
@@ -160,6 +161,7 @@ export default {
 .infos__text {
   float: left;
   margin-left: 5px;
+  line-height: 22px;
 }
 
 .infos__titulo {
