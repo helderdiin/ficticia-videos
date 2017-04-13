@@ -3,7 +3,7 @@
     <nav class="app__navbar navbar-default">
       <div class="container-fluid navbar__container-fluid">
         <div class="row">
-          <div class="col-xs-offset-1 col-xs-10">
+          <div class="container-fluid__conteudo col-xs-offset-1 col-xs-10">
             <div class="container-fluid__logo-wrapper col-xs-2">
               <a class="container-fluid__logo" href="/home">
                 <img alt="Brand" src="./assets/images/logo.png">
@@ -24,7 +24,7 @@
         </div>
       </div>
     </nav>
-    <div class="col-xs-offset-1 col-xs-10">
+    <div class="app__conteudo col-xs-offset-1 col-xs-10">
       <router-view></router-view>
     </div>
   </div>
@@ -55,6 +55,9 @@ export default {
       margin-right: 20px;
     }
   }
+.app__conteudo,
+.container-fluid__conteudo {
+  padding: 0;
 }
 
 .container-fluid__logo-wrapper {
