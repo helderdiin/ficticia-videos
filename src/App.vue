@@ -9,15 +9,19 @@
                 <img alt="Brand" src="./assets/images/logo.png">
               </a>
             </div>
-            <div class="container-fluid__menu col-xs-offset-8 col-xs-2">
+            <div class="container-fluid__topbar col-xs-offset-8 col-xs-2">
               <div class="pull-right">
-                <a href="javascript:void(0);">
+                <div class="topbar__pesquisa">
                   <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                </a>
-                <a href="javascript:void(0);">
-                  <span>Menu</span>
-                  <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                </a>
+                </div>
+                <div class="topbar__menu">
+                  <div class="menu__text">
+                    <span> Menu </span>
+                  </div>
+                  <div class="menu__icon">
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -45,19 +49,15 @@ export default {
   border: 0px;
 }
 
-.container-fluid__menu {
-  line-height: 50px;
-  font-size: 17px;
-  & a {
-    color: #fff;
-    text-decoration: none;
-    &:first-child {
-      margin-right: 20px;
-    }
-  }
 .app__conteudo,
 .container-fluid__conteudo {
   padding: 0;
+}
+
+.container-fluid__topbar {
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
 }
 
 .container-fluid__logo-wrapper {
@@ -70,6 +70,28 @@ export default {
   & img {
     width: 100%;
   }
+}
+
+.topbar__pesquisa {
+  float: left;
+  margin-right: 20px;
+  line-height: 50px;
+}
+
+.topbar__menu {
+  float: left;
+}
+
+.menu__icon {
+  float: right;
+  line-height: 50px;
+}
+
+.menu__text {
+  height: 50px;
+  margin-right: 10px;
+  float: left;
+  line-height: 47px;
 }
 
 </style>
