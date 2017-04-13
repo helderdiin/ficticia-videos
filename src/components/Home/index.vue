@@ -163,8 +163,15 @@ export default {
 }
 
 .infos__titulo {
+  width: 100%;
+  height: 80px;
   & h4 {
-    margin: 0;
+    display: -webkit-box;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 }
 
