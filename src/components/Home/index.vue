@@ -161,6 +161,10 @@ export default {
 
 .item__img {
   padding: 0;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
   & img {
     width: 100%;
     max-height: 120px;
