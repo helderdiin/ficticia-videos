@@ -21,7 +21,7 @@
                   <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                 </div>
                 <div class="infos__text">
-                  <span> {{video.views}} views </span>
+                  <span> {{video.views.short}} views </span>
                 </div>
               </div>
             </div>
@@ -75,6 +75,10 @@ const getVideoDuration = (duration = '') => {
   return `${normalizeTimeNumber(groups[1])}:${normalizeTimeNumber(groups[2])}`;
 };
 
+const getShortViews = (views = 0) => {
+  return views > 1000 ? `${parseInt((+views / 1000), 10)}k` : views;
+};
+
 const getVideosObject = (items = []) => {
   return items.map((i) => {
     return {
@@ -82,7 +86,10 @@ const getVideosObject = (items = []) => {
       title: i.snippet.title,
       description: backSlashToBreakLine(i.snippet.description),
       thumbnail: getBestThumbnail(i.snippet.thumbnails),
-      views: i.statistics.viewCount,
+      views: {
+        full: i.statistics.viewCount,
+        short: getShortViews(i.statistics.viewCount),
+      },
       duration: getVideoDuration(i.contentDetails.duration),
     };
   });
