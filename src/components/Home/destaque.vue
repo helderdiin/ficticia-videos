@@ -19,8 +19,8 @@
             <h4> {{video.title}} </h4>
           </div>
           <div class="titulo__icones">
-            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
           </div>
         </div>
         <div v-html="video.description" class="infos__desc"></div>
@@ -108,7 +108,7 @@ export default {
 
 .titulo__texto {
   float: left;
-  width: 90%;
+  width: 85%;
   & h4 {
     white-space: nowrap;
     overflow: hidden;
@@ -118,11 +118,15 @@ export default {
 
 .titulo__icones {
   float: right;
+  width: 15%;
   padding: 11px;
   font-size: 18px;
   color: #5fbdd5;
   padding-right: 0;
-  & span:first-child {
+  & span {
+    float: right;
+  }
+  & span:last-child {
     margin-right: 5px;
   }
 }
