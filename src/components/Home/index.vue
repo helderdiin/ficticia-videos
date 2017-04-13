@@ -18,23 +18,32 @@
 import Destaque from './destaque';
 import youtube from '../youtube';
 import { backSlashToBreakLine } from '../../utils';
+import { APP } from '../../constants';
+
+const getBestThumbnail = (thumbnails = {}) => {
+  if (thumbnails.maxres) {
+    return thumbnails.maxres.url;
+  } else if (thumbnails.high) {
+    return thumbnails.high.url;
+  }
+  return thumbnails.default.url;
+};
 
 export default {
   name: 'home',
   components: { Destaque },
   methods: {
     getVideos: function getVideos() {
-      youtube.getVideos({
+      youtube.getVideosData({
         maxResults: 20,
-      }).then((res = {}) => {
-        const response = res.data;
-        const items = response.items;
-
+      }).then((items = []) => {
         this.videos = items.map((i) => {
           return {
-            url: `https://www.youtube.com/embed/${i.contentDetails.videoId}`,
+            url: `${APP.YOUTUBE.EMBED_URL}/${i.id}`,
             title: i.snippet.title,
             description: backSlashToBreakLine(i.snippet.description),
+            thumbnail: getBestThumbnail(i.snippet.thumbnails),
+            views: i.statistics.viewCount,
           };
         });
       });
