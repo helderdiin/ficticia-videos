@@ -1,6 +1,6 @@
 <template>
   <div class="video-preview">
-    <div class="conteudo__item" v-for="video in videos" @click="setSelectedVideo(video)">
+    <div class="conteudo__item" :class="'col-xs-' + itemSize" v-for="video in videos" @click="setSelectedVideo(video)">
       <div class="item__img col-xs-7">
         <img :src="video.thumbnail" />
         <span class="img__duration"> {{video.duration}} </span>
@@ -32,6 +32,12 @@ export default {
         return [];
       },
     },
+    itemSize: {
+      type: Number,
+      default() {
+        return 12;
+      },
+    },
   },
   methods: {
     setSelectedVideo: function setSelectedVideo(video = {}) {
@@ -50,6 +56,7 @@ export default {
   height: 120px;
   margin-bottom: 15px;
   position: relative;
+  padding: 0;
   &:hover {
     cursor: pointer;
   }
@@ -90,6 +97,7 @@ export default {
 .infos__titulo {
   width: 100%;
   height: 80px;
+  word-wrap: break-word;
   & h4 {
     display: -webkit-box;
     margin: 0 auto;
