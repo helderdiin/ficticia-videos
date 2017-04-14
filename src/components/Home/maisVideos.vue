@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 import VideoPreview from '../videoPreview';
 
 import youtube from '../youtube';
@@ -61,6 +63,16 @@ const getShortViews = (views = 0) => {
   return views > 1000 ? `${parseInt((+views / 1000), 10)}k` : views;
 };
 
+const getFormatedDate = (publishedAt = '') => {
+  const date = moment(publishedAt);
+
+  if (date.isValid()) {
+    return `${date.format('DD')} de ${date.format('MMMM')} de ${date.format('YYYY')}`;
+  }
+
+  return '';
+};
+
 const getVideosObject = (items = []) => {
   return items.map((i) => {
     return {
@@ -71,6 +83,7 @@ const getVideosObject = (items = []) => {
       viewsFull: i.statistics.viewCount,
       viewsShort: getShortViews(i.statistics.viewCount),
       duration: getVideoDuration(i.contentDetails.duration),
+      publishedAt: getFormatedDate(i.snippet.publishedAt),
     };
   });
 };

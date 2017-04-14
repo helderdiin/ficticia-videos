@@ -8,7 +8,7 @@ const defaultParams = {
     maxResults: 50,
   },
   videos: {
-    part: 'statistics,contentDetails',
+    part: 'statistics,contentDetails,snippet',
   },
 };
 

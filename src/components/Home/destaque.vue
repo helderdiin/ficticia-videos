@@ -16,10 +16,10 @@
       <div class="conteudo-video__infos" @click="toggleInfosVideo" :class="{ 'conteudo-video__infos--closed': infosVideoClosed }">
         <div class="infos__titulo">
           <div class="titulo__texto">
-            <h4> {{video.title}} </h4>
+            <h4 :title="video.title"> {{video.title}} </h4>
           </div>
           <div class="titulo__icones">
-            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-time" :title="video.publishedAt" aria-hidden="true"></span>
             <span class="glyphicon glyphicon-eye-open" :title="video.viewsFull + ' views'" aria-hidden="true"></span>
           </div>
         </div>
