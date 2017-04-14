@@ -14,7 +14,7 @@
                 <div class="topbar__pesquisa">
                   <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 </div>
-                <div class="topbar__menu">
+                <div class="topbar__menu" @click="toggleMenu">
                   <div class="menu__text">
                     <span> Menu </span>
                   </div>
@@ -22,6 +22,7 @@
                     <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                   </div>
                 </div>
+                <dropdown-menu :items="menuItems" v-if="menuOpen" @itemSelected="toggleMenu"/>
               </div>
             </div>
           </div>
@@ -35,8 +36,32 @@
 </template>
 
 <script>
+import DropdownMenu from './components/dropdownMenu';
+
+const menuItems = [{
+  title: 'Destaque',
+  id: 'destaque',
+  icon: 'glyphicon-star',
+}, {
+  title: 'Vídeos',
+  id: 'videos',
+  icon: 'glyphicon-play',
+}];
+
 export default {
   name: 'app',
+  components: { DropdownMenu },
+  methods: {
+    toggleMenu: function toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+    },
+  },
+  data() {
+    return {
+      menuOpen: false,
+      menuItems,
+    };
+  },
 };
 </script>
 
@@ -80,6 +105,10 @@ export default {
 
 .topbar__menu {
   float: left;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
 }
 
 .menu__icon {

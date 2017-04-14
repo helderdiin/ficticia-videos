@@ -13,7 +13,7 @@ export default {
   name: 'home',
   components: { Destaque, MaisVideos },
   methods: {
-    setVideoDestaque: function setVideoDestaque(video) {
+    setVideoDestaque: function setVideoDestaque(video = {}) {
       this.videoDestaque = video;
     },
   },
