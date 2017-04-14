@@ -34,7 +34,7 @@ export default {
       youtube.getVideos({
         maxResults: 4,
       }).then((items = []) => {
-        this.videos = [...this.videos, ...items];
+        this.videos = items;
         this.setSelectedVideo(this.videos[0]);
       });
     },

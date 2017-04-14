@@ -12,6 +12,16 @@ Vue.config.productionTip = false;
 
 moment.locale('pt');
 
+const eventHub = new Vue();
+
+Vue.mixin({
+  data() {
+    return {
+      eventHub,
+    };
+  },
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

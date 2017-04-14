@@ -32,7 +32,16 @@ export default {
       youtube.getVideos({
         maxResults: 12,
       }).then((items = []) => {
-        this.videos = [...this.videos, ...items];
+        this.videos = items;
+        this.setSelectedVideo(this.videos[0]);
+      });
+    },
+    searchVideos: function searchVideos(q = '') {
+      youtube.searchVideos({
+        maxResults: 12,
+        q,
+      }).then((items = []) => {
+        this.videos = items;
         this.setSelectedVideo(this.videos[0]);
       });
     },
@@ -41,6 +50,7 @@ export default {
 
       youtube.getMoreVideos({
         maxResults: 12,
+        q: this.q,
       }).then((items = []) => {
         this.toggleCarregandoMaisVideos();
         this.videos = [...this.videos, ...items];
@@ -54,12 +64,23 @@ export default {
     },
   },
   created() {
-    this.getVideos();
+    this.q = this.$route.params.q;
+
+    if (this.$route.params.q) {
+      this.searchVideos(this.$route.params.q);
+    } else {
+      this.getVideos();
+    }
+
+    this.eventHub.$on('searchVideos', (q = '') => {
+      this.searchVideos(q);
+    });
   },
   data() {
     return {
       videos: [],
       carregandoMaisVideos: false,
+      q: '',
     };
   },
 };

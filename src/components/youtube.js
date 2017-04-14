@@ -8,6 +8,11 @@ const defaultParams = {
     part: 'snippet,contentDetails',
     maxResults: 50,
   },
+  searchedItems: {
+    part: 'snippet,id',
+    type: 'video',
+    maxResults: 50,
+  },
   videos: {
     part: 'statistics,contentDetails,snippet',
   },
@@ -57,6 +62,10 @@ const getFormatedDate = (publishedAt = '') => {
 };
 
 const getVideosObject = (i = {}) => {
+  if (!i.snippet || !i.id || !i.statistics || !i.contentDetails) {
+    return {};
+  }
+
   return {
     url: `${APP.YOUTUBE.EMBED_URL}/${i.id}`,
     title: i.snippet.title,
@@ -70,7 +79,13 @@ const getVideosObject = (i = {}) => {
 };
 
 const getUrl = (routeName = 'playlistItems') => {
-  return `${APP.YOUTUBE.URL}/${routeName}?key=${APP.YOUTUBE.KEY}&playlistId=${APP.YOUTUBE.PLAYLIST_ID}`;
+  if (routeName === 'playlistItems') {
+    return `${APP.YOUTUBE.URL}/${routeName}?key=${APP.YOUTUBE.KEY}&playlistId=${APP.YOUTUBE.PLAYLIST_ID}`;
+  } else if (routeName === 'search') {
+    return `${APP.YOUTUBE.URL}/${routeName}?key=${APP.YOUTUBE.KEY}&channelId=${APP.YOUTUBE.CHANNEL_ID}`;
+  }
+
+  return `${APP.YOUTUBE.URL}/${routeName}?key=${APP.YOUTUBE.KEY}`;
 };
 
 const request = (config) => {
@@ -80,6 +95,13 @@ const request = (config) => {
 const getPlaylistItems = (params = {}) => {
   const playlistItemsParams = Object.assign({}, defaultParams.playlistItems, params);
   const url = `${getUrl('playlistItems')}&${objParamToStringQueryParam(playlistItemsParams)}`;
+
+  return request({ url });
+};
+
+const getSearchedItems = (params = {}) => {
+  const searchedItemsParams = Object.assign({}, defaultParams.searchedItems, params);
+  const url = `${getUrl('search')}&${objParamToStringQueryParam(searchedItemsParams)}`;
 
   return request({ url });
 };
@@ -119,10 +141,27 @@ class Youtube {
         pageToken: this.pageToken.nextPageToken,
       });
 
-      return this.getVideos(newParams);
+      return newParams.q ? this.searchVideos(newParams) : this.getVideos(newParams);
     }
 
     return Promise.resolve([]);
+  }
+
+  searchVideos(params = {}) {
+    return getSearchedItems(params).then((res = {}) => {
+      const items = res.data.items;
+      const reqs = items.map((i) => {
+        return getVideos({ id: i.id.videoId });
+      });
+
+      this.pageToken.nextPageToken = res.data.nextPageToken;
+
+      return Promise.all(reqs).then((resolveds = {}) => {
+        return resolveds.map((r, i) => {
+          return getVideosObject(Object.assign({}, items[i], r.data.items[0]));
+        });
+      });
+    });
   }
 }
 

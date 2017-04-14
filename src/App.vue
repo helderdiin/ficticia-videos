@@ -22,7 +22,7 @@
                 <div class="topbar__pesquisa">
                   <div class="pesquisa__conteudo-wrapper" v-if="searchOpen">
                     <div class="pesquisa__input">
-                      <input>
+                      <input @keyup="searchVideo">
                     </div>
                     <div class="pesquisa__icon">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -76,6 +76,18 @@ export default {
     },
     toggleSearch: function toggleSearch() {
       this.searchOpen = !this.searchOpen;
+    },
+    searchVideo: function searchVideo(e = {}) {
+      const q = e.target.value;
+
+      if (q.length > 3) {
+        this.$router.push({
+          name: 'TodosVideos',
+          params: { q },
+        });
+
+        this.eventHub.$emit('searchVideos', q);
+      }
     },
   },
   data() {
