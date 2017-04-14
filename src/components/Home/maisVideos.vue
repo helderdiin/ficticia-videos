@@ -22,71 +22,9 @@
 </template>
 
 <script>
-import moment from 'moment';
-
 import VideoPreview from '../videoPreview';
 
 import youtube from '../youtube';
-import { backSlashToBreakLine, normalizeTimeNumber } from '../../utils';
-import { APP } from '../../constants';
-
-const getBestThumbnail = (thumbnails = {}) => {
-  if (thumbnails.maxres) {
-    return thumbnails.maxres.url;
-  } else if (thumbnails.high) {
-    return thumbnails.high.url;
-  }
-  return thumbnails.default.url;
-};
-
-const getGroups = (duration = '') => {
-  const regexpMS = /PT(\d+)M(\d+)S/;
-  const regexpM = /PT(\d+)M/;
-  const regexpS = /PT(\d+)S/;
-
-  if (duration.match(/[M][S]/g)) {
-    return regexpMS.exec(duration);
-  } else if (duration.match(/[M]/g)) {
-    return regexpM.exec(duration);
-  }
-
-  return regexpS.exec(duration);
-};
-
-const getVideoDuration = (duration = '') => {
-  const groups = getGroups(duration);
-
-  return `${normalizeTimeNumber(groups[1])}:${normalizeTimeNumber(groups[2])}`;
-};
-
-const getShortViews = (views = 0) => {
-  return views > 1000 ? `${parseInt((+views / 1000), 10)}k` : views;
-};
-
-const getFormatedDate = (publishedAt = '') => {
-  const date = moment(publishedAt);
-
-  if (date.isValid()) {
-    return `${date.format('DD')} de ${date.format('MMMM')} de ${date.format('YYYY')}`;
-  }
-
-  return '';
-};
-
-const getVideosObject = (items = []) => {
-  return items.map((i) => {
-    return {
-      url: `${APP.YOUTUBE.EMBED_URL}/${i.id}`,
-      title: i.snippet.title,
-      description: backSlashToBreakLine(i.snippet.description),
-      thumbnail: getBestThumbnail(i.snippet.thumbnails),
-      viewsFull: i.statistics.viewCount,
-      viewsShort: getShortViews(i.statistics.viewCount),
-      duration: getVideoDuration(i.contentDetails.duration),
-      publishedAt: getFormatedDate(i.snippet.publishedAt),
-    };
-  });
-};
 
 export default {
   name: 'mais-videos',
@@ -96,7 +34,7 @@ export default {
       youtube.getVideos({
         maxResults: 4,
       }).then((items = []) => {
-        this.videos = [...this.videos, ...getVideosObject(items)];
+        this.videos = [...this.videos, ...items];
         this.setSelectedVideo(this.videos[0]);
       });
     },
@@ -107,7 +45,7 @@ export default {
         maxResults: 4,
       }).then((items = []) => {
         this.toggleCarregandoMaisVideos();
-        this.videos = [...this.videos, ...getVideosObject(items)];
+        this.videos = [...this.videos, ...items];
       });
     },
     toggleCarregandoMaisVideos: function toggleCarregandoMaisVideos() {
