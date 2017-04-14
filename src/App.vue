@@ -5,7 +5,7 @@
         <div class="row">
           <div class="container-fluid__conteudo col-xs-offset-1 col-xs-10">
             <div class="container-fluid__logo-wrapper col-xs-2">
-              <a class="container-fluid__logo" href="/home">
+              <a class="container-fluid__logo" href="/#/">
                 <img alt="Brand" src="./assets/images/logo.png">
               </a>
             </div>
@@ -22,7 +22,7 @@
                     <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                   </div>
                 </div>
-                <dropdown-menu :items="menuItems" v-if="menuOpen" @itemSelected="toggleMenu"/>
+                <dropdown-menu :items="menuItems" v-if="menuOpen" @itemSelected="itemSelected"/>
               </div>
             </div>
           </div>
@@ -42,16 +42,25 @@ const menuItems = [{
   title: 'Destaque',
   id: 'destaque',
   icon: 'glyphicon-star',
+  path: '/',
 }, {
   title: 'Vídeos',
   id: 'videos',
   icon: 'glyphicon-play',
+  path: 'todosVideos',
 }];
 
 export default {
   name: 'app',
   components: { DropdownMenu },
   methods: {
+    itemSelected: function itemSelected(item = {}) {
+      this.toggleMenu();
+
+      if (item.path) {
+        this.$router.push(item.path);
+      }
+    },
     toggleMenu: function toggleMenu() {
       this.menuOpen = !this.menuOpen;
     },
