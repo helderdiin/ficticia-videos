@@ -9,17 +9,27 @@
                 <img alt="Brand" src="./assets/images/logo.png">
               </a>
             </div>
-            <div class="container-fluid__topbar col-xs-offset-8 col-xs-2">
+            <div class="container-fluid__topbar col-xs-offset-6 col-xs-4">
               <div class="pull-right">
-                <div class="topbar__pesquisa">
-                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                </div>
                 <div class="topbar__menu" @click="toggleMenu">
                   <div class="menu__text">
                     <span> Menu </span>
                   </div>
                   <div class="menu__icon">
                     <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="topbar__pesquisa">
+                  <div class="pesquisa__conteudo-wrapper" v-if="searchOpen">
+                    <div class="pesquisa__input">
+                      <input>
+                    </div>
+                    <div class="pesquisa__icon">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                  <div class="pesquisa__search-icon" v-if="!searchOpen" @click="toggleSearch">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                   </div>
                 </div>
                 <dropdown-menu :items="menuItems" v-if="menuOpen" @itemSelected="itemSelected"/>
@@ -64,10 +74,14 @@ export default {
     toggleMenu: function toggleMenu() {
       this.menuOpen = !this.menuOpen;
     },
+    toggleSearch: function toggleSearch() {
+      this.searchOpen = !this.searchOpen;
+    },
   },
   data() {
     return {
       menuOpen: false,
+      searchOpen: false,
       menuItems,
     };
   },
@@ -107,13 +121,45 @@ export default {
 }
 
 .topbar__pesquisa {
+  float: right;
+  width: 225px;
+  padding: 10px 0;
+  margin-right: 15px;
+  line-height: 26px;
+  box-sizing: border-box;
+}
+
+.pesquisa__conteudo-wrapper {
+  border: 1px solid #fff;
+  height: 28px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.pesquisa__input {
   float: left;
-  margin-right: 20px;
-  line-height: 50px;
+  padding: 0 5px;
+  & input {
+    background-color: transparent;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.pesquisa__icon {
+  float: left;
+}
+
+.pesquisa__search-icon {
+  padding-top: 2px;
+  padding-right: 6px;
+  float: right;
 }
 
 .topbar__menu {
-  float: left;
+  float: right;
   &:hover {
     cursor: pointer;
     opacity: 0.7;
