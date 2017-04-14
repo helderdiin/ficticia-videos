@@ -68,10 +68,8 @@ const getVideosObject = (items = []) => {
       title: i.snippet.title,
       description: backSlashToBreakLine(i.snippet.description),
       thumbnail: getBestThumbnail(i.snippet.thumbnails),
-      views: {
-        full: i.statistics.viewCount,
-        short: getShortViews(i.statistics.viewCount),
-      },
+      viewsFull: i.statistics.viewCount,
+      viewsShort: getShortViews(i.statistics.viewCount),
       duration: getVideoDuration(i.contentDetails.duration),
     };
   });

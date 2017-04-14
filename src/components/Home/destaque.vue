@@ -20,7 +20,7 @@
           </div>
           <div class="titulo__icones">
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-eye-open" :title="video.viewsFull + ' views'" aria-hidden="true"></span>
           </div>
         </div>
         <div v-html="video.description" class="infos__desc"></div>

@@ -14,7 +14,7 @@
             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
           </div>
           <div class="infos__text">
-            <span> {{video.views.short}} views </span>
+            <span> {{video.viewsShort}} views </span>
           </div>
         </div>
       </div>
