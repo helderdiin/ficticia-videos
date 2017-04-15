@@ -32,19 +32,22 @@ export const getDurationGroups = (duration = '') => {
   const regexpM = /PT(\d+)M/;
   const regexpS = /PT(\d+)S/;
 
-  if (duration.match(/[M][S]/g)) {
-    return regexpMS.exec(duration);
+  if (duration.match(/[M]/g) && duration.match(/[S]/g)) {
+    const result = regexpMS.exec(duration);
+    return [result[1], result[2]];
   } else if (duration.match(/[M]/g)) {
-    return regexpM.exec(duration);
+    const result = regexpM.exec(duration);
+    return [result[1], undefined];
   }
 
-  return regexpS.exec(duration);
+  const result = regexpS.exec(duration);
+  return [undefined, result[1]];
 };
 
-  const groups = getGroups(duration);
 export const getVideoDuration = (duration = '') => {
+  const groups = getDurationGroups(duration);
 
-  return `${normalizeTimeNumber(groups[1])}:${normalizeTimeNumber(groups[2])}`;
+  return `${normalizeTimeNumber(groups[0])}:${normalizeTimeNumber(groups[1])}`;
 };
 
 export const getShortViews = (views = 0) => {
