@@ -18,7 +18,7 @@ const defaultParams = {
   },
 };
 
-const getBestThumbnail = (thumbnails = {}) => {
+export const getBestThumbnail = (thumbnails = {}) => {
   if (thumbnails.maxres) {
     return thumbnails.maxres.url;
   } else if (thumbnails.high) {
@@ -27,7 +27,7 @@ const getBestThumbnail = (thumbnails = {}) => {
   return thumbnails.default.url;
 };
 
-const getGroups = (duration = '') => {
+export const getDurationGroups = (duration = '') => {
   const regexpMS = /PT(\d+)M(\d+)S/;
   const regexpM = /PT(\d+)M/;
   const regexpS = /PT(\d+)S/;
@@ -41,17 +41,17 @@ const getGroups = (duration = '') => {
   return regexpS.exec(duration);
 };
 
-const getVideoDuration = (duration = '') => {
   const groups = getGroups(duration);
+export const getVideoDuration = (duration = '') => {
 
   return `${normalizeTimeNumber(groups[1])}:${normalizeTimeNumber(groups[2])}`;
 };
 
-const getShortViews = (views = 0) => {
   return views > 1000 ? `${parseInt((+views / 1000), 10)}k` : views;
+export const getShortViews = (views = 0) => {
 };
 
-const getFormatedDate = (publishedAt = '') => {
+export const getFormatedDate = (publishedAt = '') => {
   const date = moment(publishedAt);
 
   if (date.isValid()) {
