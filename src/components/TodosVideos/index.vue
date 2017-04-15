@@ -1,11 +1,13 @@
 <template>
   <div class="todos-videos col-xs-12">
+    <!-- use the modal component, pass in the prop -->
+    <modal-component :video="selectedVideo" v-if="showModal" @close="toggleShowModal"></modal-component>
     <div class="todos-videos__titulo">
       <h2>Todos os vídeos do Canal</h2>
     </div>
     <div class="todos-videos__conteudo">
       <div class="conteudo__video-preview">
-        <video-preview :videos="videos" :itemSize="4" @updateSelectedVideo="setSelectedVideo"></video-preview>
+        <video-preview :videos="videos" :itemSize="4" @updateSelectedVideo="updateSelectedVideo"></video-preview>
       </div>
       <div class="conteudo__carregar-mais">
         <div class="carregar-mais__botao" :class="{ 'carregar-mais__botao--invisible': carregandoMaisVideos }" @click="carregarMaisVideos">
@@ -21,12 +23,13 @@
 
 <script>
 import VideoPreview from '../videoPreview';
+import ModalComponent from '../modalComponent';
 
 import youtube from '../youtube';
 
 export default {
   name: 'todos-videos',
-  components: { VideoPreview },
+  components: { VideoPreview, ModalComponent },
   methods: {
     getVideos: function getVideos() {
       youtube.getVideos({
@@ -60,7 +63,14 @@ export default {
       this.carregandoMaisVideos = !this.carregandoMaisVideos;
     },
     setSelectedVideo: function setSelectedVideo(video = {}) {
-      this.$emit('updateSelectedVideo', video);
+      this.selectedVideo = video;
+    },
+    toggleShowModal: function toggleShowModal() {
+      this.showModal = !this.showModal;
+    },
+    updateSelectedVideo: function updateSelectedVideo(video = {}) {
+      this.setSelectedVideo(video);
+      this.toggleShowModal();
     },
   },
   created() {
@@ -81,6 +91,8 @@ export default {
       videos: [],
       carregandoMaisVideos: false,
       q: '',
+      showModal: false,
+      selectedVideo: {},
     };
   },
 };
