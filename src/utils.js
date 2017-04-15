@@ -1,6 +1,6 @@
 export const objParamToStringQueryParam = (params = {}) => {
   return Object.keys(params).map((p) => {
-    return `${encodeURIComponent(p)}=${params[encodeURIComponent(p)]}`;
+    return `${encodeURIComponent(p)}=${encodeURIComponent(params[p])}`;
   }).join('&');
 };
 
