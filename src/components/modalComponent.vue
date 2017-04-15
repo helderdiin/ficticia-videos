@@ -10,7 +10,7 @@
               </button>
             </div>
             <div class="destaque__conteudo-video">
-              <div class="conteudo-video__video">
+              <div class="modal__conteudo-video__video">
                 <iframe
                   width="100%"
                   height="100%"
@@ -19,17 +19,17 @@
                   :src="video.url">
                 </iframe>
               </div>
-              <div class="conteudo-video__infos style-scroll" @click="toggleInfosVideo">
-                <div class="infos__titulo">
-                  <div class="titulo__texto">
+              <div class="modal__conteudo-video__infos style-scroll" @click="toggleInfosVideo">
+                <div class="modal__infos__titulo">
+                  <div class="modal__titulo__texto">
                     <h4 :title="video.title"> {{video.title}} </h4>
                   </div>
-                  <div class="titulo__icones">
+                  <div class="modal__titulo__icones">
                     <span class="glyphicon glyphicon-time" :title="video.publishedAt" aria-hidden="true"></span>
                     <span class="glyphicon glyphicon-eye-open" :title="video.viewsFull + ' views'" aria-hidden="true"></span>
                   </div>
                 </div>
-                <div v-html="video.description" class="infos__desc"></div>
+                <div v-html="video.description" class="modal__infos__desc"></div>
               </div>
             </div>
           </div>
@@ -125,11 +125,11 @@ export default {
   margin-top: 30px;
 }
 
-.conteudo-video__video {
+.modal__conteudo-video__video {
   height: 270px;
 }
 
-.conteudo-video__infos {
+.modal__conteudo-video__infos {
   padding: 5px 10px;
   position: relative;
   margin-top: 20px;
@@ -140,26 +140,17 @@ export default {
   }
 }
 
-.infos__gradient--visible {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(transparent, white);
-  height: 160px;
-}
-
-.infos__desc {
+.modal__infos__desc {
   width: 100%;
   overflow: hidden;
   word-wrap: break-word;
 }
 
-.infos__titulo {
+.modal__infos__titulo {
   overflow: hidden;
 }
 
-.titulo__texto {
+.modal__titulo__texto {
   float: left;
   width: 85%;
   & h4 {
@@ -169,7 +160,7 @@ export default {
   }
 }
 
-.titulo__icones {
+.modal__titulo__icones {
   float: right;
   width: 15%;
   padding: 11px;
