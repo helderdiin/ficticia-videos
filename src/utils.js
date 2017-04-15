@@ -9,7 +9,7 @@ export const backSlashToBreakLine = (text = '') => {
 };
 
 export const normalizeTimeNumber = (time = 0) => {
-  return +time > 9 ? time : `0${time}`;
+  return +time > 9 ? `${time}` : `0${time}`;
 };
 
 export default {

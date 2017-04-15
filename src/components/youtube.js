@@ -47,8 +47,8 @@ export const getVideoDuration = (duration = '') => {
   return `${normalizeTimeNumber(groups[1])}:${normalizeTimeNumber(groups[2])}`;
 };
 
-  return views > 1000 ? `${parseInt((+views / 1000), 10)}k` : views;
 export const getShortViews = (views = 0) => {
+  return views > 1000 ? `${parseInt((+views / 1000), 10)}k` : `${views}`;
 };
 
 export const getFormatedDate = (publishedAt = '') => {
