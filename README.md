@@ -2,7 +2,7 @@
 
 > Repositório para disponibilizar desafio da empresa VAGAS.com (https://www.vagas.com.br/) para vaga de desenvolvedor front-end.
 
-[Acesso ao desafio online](https://helderdiin.github.io/ficticia-videos/).
+[Acesso ao desafio online](https://helderdiin.github.io/ficticia-videos/index.html).
 
 O Layout foi enviado por email e os critérios de aceite eram estes:
 
