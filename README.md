@@ -2,6 +2,8 @@
 
 > Repositório para disponibilizar desafio da empresa VAGAS.com (https://www.vagas.com.br/) para vaga de desenvolvedor front-end.
 
+[Acesso ao desafio online](https://helderdiin.github.io/ficticia-videos/).
+
 O Layout foi enviado por email e os critérios de aceite eram estes:
 
 - [X] Pré-processador de CSS (SASS, LESS, Stylus...);
@@ -14,7 +16,7 @@ Mas seria muito legal se encontrassem também:
 
 - [X] Buildar os seus assets (Webpack, Gulp, Grunt...);
 - [X] Testes automatizados;
-- [X] CSS modularizado;
+- [X] CSS modularizado.
 
 ## Build Setup
 
