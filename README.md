@@ -1,6 +1,20 @@
 # Fictícia vídeos
 
-> Repositório para disponibilizar desafio para vaga de desenvolvedor front-end.
+> Repositório para disponibilizar desafio da empresa VAGAS.com (https://www.vagas.com.br/) para vaga de desenvolvedor front-end.
+
+O Layout foi enviado por email e os critérios de aceite eram estes:
+
+- [X] Pré-processador de CSS (SASS, LESS, Stylus...);
+- [X] Algum Framework JS / library; (AngularJS, React, Ember.js, Backbone.js, Vue.js...);
+- [X] [API do YouTube](https://developers.google.com/youtube/v3/);
+- [X] Responsividade;
+- [X] Listar, buscar e reproduzir os vídeos do canal. (Observe atentamente as imagens do Protótipo).
+
+Mas seria muito legal se encontrassem também:
+
+- [X] Buildar os seus assets (Webpack, Gulp, Grunt...);
+- [X] Testes automatizados;
+- [X] CSS modularizado;
 
 ## Build Setup
 
